@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+{% block title %}Creacion de Menu{% endblock %}
+{% block body %}
+{{ parent() }}
+<section id="container" align="center" >
+    <!--main content start-->
+    <section id="main-content" align="center">
+        <section class="wrapper" align="center">
+          <div class="page-header">
+					           <h1>Crear Menu</h1>
+				    </div>
+              {{ form_start(form) }}
+            {{ form_widget(form) }}
+
+             <p>
+               <input id="jorge" class="btn btn-success" type="submit" value="Guardar" />
+             </p>
+
+      {{ form_end(form) }}
+        </section>
+      </section>
+      </section>
+{% endblock %}
+{% block footer %}
+
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript">
+$('#jorge').click(function(e){
+  // e.preventDefault();
+      var nombreAct, descripcionAct,fechaInicioAct;
+      // nombreAct=  $('#form_parent_menu').val().trim();
+      descripcionAct=$('#squirrelbundle_menuitem_nombremenu').val().trim();
+  if(  descripcionAct == ''  ){
+      swal(
+    'Oops...',
+    'Debes de llenar el formulario Completamente!',
+    'error'
+  );
+    }
+    else {
+      swal(
+  'Excelente!',
+  'Nuevo Menu !',
+  'success'
+);
+    }
+});// fin del click function de guardar actividades
+</script>
+
+{% endblock %}

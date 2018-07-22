@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="cliente")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ClienteRepository")
+  * @ORM\HasLifecycleCallbacks()
  */
 class Cliente
 {
@@ -217,5 +218,21 @@ class Cliente
     {
         return $this->updatedAt;
     }
-}
 
+    /**
+   * @ORM\PrePersist
+   */
+  public function setCreatedAtValue()
+  {
+      $this->createdAt = new \DateTime();
+  }
+  
+  /**
+   * @ORM\PrePersist
+   * @ORM\PreUpdate
+   */
+  public function setUpdatedAtValue()
+  {
+      $this->updatedAt = new \DateTime();
+  }
+}

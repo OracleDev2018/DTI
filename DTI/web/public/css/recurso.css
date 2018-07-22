@@ -1,0 +1,86 @@
+/* Switch button */
+
+.btn-default.btn-on.active{background-color: #00D590;color: white;}
+.btn-default.btn-off.active{background-color: #DA4F49;color: white;}
+textarea{
+  overflow-x: hidden !important;
+}
+
+
+#buscarRecursosModal{
+  width: 85%;
+}
+.vista-modal{
+  background-color: white;
+  height: 80%;
+  width: 40%;
+  display: none;
+  border-radius: 10px;
+
+
+}
+.modal-body{
+  overflow: auto !important;
+  height: 80%;
+  background-color: white;
+  padding: 5%;
+  padding-left: 2%;
+  padding-bottom: 0px;
+}
+.footer-modal{
+  border-top: 4px solid #bdc3c7;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 10px;
+  height: auto;
+  background-color: white;
+
+}
+.header-vista-modal{
+    color:#fff;
+    padding:9px 15px;
+    border-bottom:1px solid #eee;
+    background-color: #00A8B3;
+
+
+
+}
+
+#custom-search-input {
+        margin:0;
+        margin-top: 10px;
+        padding: 0;
+    }
+
+    #custom-search-input .search-query {
+        padding-right: 3px;
+        padding-right: 4px \9;
+        padding-left: 3px;
+        padding-left: 4px \9;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+    }
+
+    #custom-search-input button {
+        border: 0;
+        background: none;
+        /** belows styles are working good */
+        padding: 2px 5px;
+        margin-top: 2px;
+        position: relative;
+        left: -28px;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        color:#D9230F;
+    }
+
+    .search-query:focus + button {
+        z-index: 3;
+    }

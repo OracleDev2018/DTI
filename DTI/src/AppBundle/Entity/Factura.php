@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="factura")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\FacturaRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Factura
 {
@@ -100,6 +101,7 @@ class Factura
      * @ORM\JoinColumn(name="id_f_cliente", referencedColumnName="id")
      */
     private $cliente;
+
 
 
 
@@ -305,4 +307,6 @@ class Factura
     {
         return $this->updatedAt;
     }
+
+  
 }

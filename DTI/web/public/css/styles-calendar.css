@@ -1,0 +1,106 @@
+
+#list-activities{
+      display: block;
+}
+#list-act{
+  background-color: #efefef;
+}
+#l-act{
+  padding: 0px;
+}
+.dd-handle {
+  height: auto !important;
+}
+.control-label-act{
+  padding-top: 2%;
+  font-weight: 400;
+  font-family: 'Open Sans', sans-serif;
+}
+#a-act{
+  color:white;
+}
+#actPredecesora{
+ margin-bottom: 0px;
+}
+#modal{
+  padding: 10px;
+}
+#panel-actividades{
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: visible;
+  max-height: 565px;
+  min-height: 565px;
+}
+#formBotones{
+margin-left:15px;
+}
+textarea{
+max-width: 100%;
+min-width: 100%;
+max-height: 100px;
+min-height: 100px;
+}
+.input-group-btn>.btn+.btn {
+
+    margin-top: -8px !important;
+}
+
+.input-group-addon{
+  cursor: pointer;
+}
+/* estilos para las actividades parent en la lista de actividades*/
+.accordion-heading {  position: relative; }
+.accordion-heading .edit {
+    position: absolute;
+    top: 8px;
+    right: 30px;
+}
+.area { border-left: 4px solid #98b3fa; }
+.equipamento { border-left: 4px solid #65c465; }
+.ponto { border-left: 4px solid #98b3fa; }
+.collapse.in { overflow: visible; }
+
+
+.accordion{
+  margin-bottom:20px;
+}
+.accordion-group{
+  margin-bottom:2px;
+  border:1px solid #e5e5e5;
+  -webkit-border-radius:4px;
+  -moz-border-radius:4px;
+  border-radius:4px;
+}
+.accordion-heading{
+  border-bottom:0;
+}
+.accordion-heading .accordion-toggle{
+    display: block;
+    padding: 8px 15px;
+    background-color: aliceblue;}
+.accordion-toggle{
+  cursor:pointer;
+}
+.accordion-inner{
+  padding:9px 15px;
+  border-top:1px solid #e5e5e5;
+}
+.drop{
+  width: auto;
+  border: 0px solid;
+}
+.dropmenu{
+  position: relative;
+}
+.padre{
+margin-bottom: 1%;
+}
+
+.hijo{
+border: 0px;
+border-top:1px solid #e5e5e5;
+}
+
+/*fin de estilos*/
+.eliminar{}
