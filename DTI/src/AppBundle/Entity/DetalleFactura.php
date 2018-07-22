@@ -49,6 +49,24 @@ class DetalleFactura
      */
     private $updatedAt;
 
+    /**
+     * La factura a la que pertenecen.
+     *
+     * @var \Factura
+     *
+     * @ORM\ManyToOne(targetEntity="Factura", inversedBy="detalles", cascade={"persist"})
+     * @ORM\JoinColumn(name="id_f_factura", referencedColumnName="id")
+     */
+    private $factura;
+
+    /**
+    * @var \Articulo
+    *
+    * @ORM\OneToOne(targetEntity="Articulo")
+    * @ORM\JoinColumn(name="id_f_articulo", referencedColumnName="id")
+    */
+   private $idFarticulo;
+
 
     /**
      * Get id
@@ -156,4 +174,3 @@ class DetalleFactura
         return $this->updatedAt;
     }
 }
-

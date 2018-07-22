@@ -49,6 +49,14 @@ class Proveedor
      */
     private $updatedAt;
 
+    /**
+    * @var \Empresa
+    *
+    * @ORM\OneToOne(targetEntity="Empresa")
+    * @ORM\JoinColumn(name="id_f_Empresa", referencedColumnName="id")
+    */
+   private $idFEmpresa;
+
 
     /**
      * Get id
@@ -156,4 +164,3 @@ class Proveedor
         return $this->updatedAt;
     }
 }
-

@@ -77,6 +77,32 @@ class Factura
      */
     private $updatedAt;
 
+    /**
+     * Una Factura tiene muchos DetallFactura.
+     *
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(
+     *   targetEntity="DetalleFactura",
+     *   mappedBy="factura",
+     *   fetch="EXTRA_LAZY",
+     *   orphanRemoval=true,
+     *   cascade={"persist", "remove"}
+     * )
+     */
+    private $detalles;
+
+      /**
+     * Quien la creó?
+     *
+     * @var \AppBundle\Entity\Cliente
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Cliente")
+     * @ORM\JoinColumn(name="id_f_cliente", referencedColumnName="id")
+     */
+    private $cliente;
+
+
+
 
     /**
      * Get id
@@ -280,4 +306,3 @@ class Factura
         return $this->updatedAt;
     }
 }
-

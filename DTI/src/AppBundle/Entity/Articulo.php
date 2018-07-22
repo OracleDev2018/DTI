@@ -70,6 +70,22 @@ class Articulo
      */
     private $updatedAt;
 
+    /**
+    * @var \Proveedor
+    *
+    * @ORM\OneToOne(targetEntity="Proveedor")
+    * @ORM\JoinColumn(name="id_f_proveedor", referencedColumnName="id")
+    */
+   private $idFProveedor;
+
+   /**
+   * @var \Marca
+   *
+   * @ORM\OneToOne(targetEntity="Marca")
+   * @ORM\JoinColumn(name="id_f_Marca", referencedColumnName="id")
+   */
+  private $idFMarca;
+
 
     /**
      * Get id
@@ -249,4 +265,3 @@ class Articulo
         return $this->updatedAt;
     }
 }
-
