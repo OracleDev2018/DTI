@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Articulo</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ articulo.id }}</td>
+            </tr>
+            <tr>
+                <th>Codproducto</th>
+                <td>{{ articulo.codProducto }}</td>
+            </tr>
+            <tr>
+                <th>Nombreproducto</th>
+                <td>{{ articulo.nombreProducto }}</td>
+            </tr>
+            <tr>
+                <th>Precio</th>
+                <td>{{ articulo.precio }}</td>
+            </tr>
+            <tr>
+                <th>Cantidaddisponible</th>
+                <td>{{ articulo.cantidadDisponible }}</td>
+            </tr>
+            <tr>
+                <th>Fechavencimiento</th>
+                <td>{% if articulo.fechaVencimiento %}{{ articulo.fechaVencimiento|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if articulo.createdAt %}{{ articulo.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if articulo.updatedAt %}{{ articulo.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('articulo_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('articulo_edit', { 'id': articulo.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

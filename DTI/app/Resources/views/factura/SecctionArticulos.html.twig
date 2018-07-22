@@ -1,0 +1,41 @@
+<!-- <section class="panel">
+    <header class="panel-heading">
+        <i class="fa fa-money"></i>&nbsp;&nbsp;Agregar Articulo
+    </header> -->
+    <div class="panel-body">
+
+        <div class="adv-table">
+            <!--table class="table table-striped table-hover table-bordered" id="editable-sample"-->
+            <table  class="display table table-bordered table-striped" id="example">
+                <thead>
+                <tr>
+                    <th><li class="fa fa-barcode"></li>&nbsp;&nbsp;Cod Articulo</th>
+                    <th><li class="fa fa-bookmark-o"></li>&nbsp;&nbsp;Nombre Articulo</th>
+                    <th><li class="fa fa-barcode"></li>&nbsp;&nbsp;Precio</th>
+                    <th><li class="fa fa-bookmark"></li>&nbsp;&nbsp;Cantidad Disponible</th>
+
+                      <th><li class="fa fa-wrench"></li></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for articulo in articulos %}
+                    <tr>
+                        <td>{{ articulo.codProducto }}</td>
+                        <td>{{ articulo.nombreProducto }}</td>
+                        <td>{{ articulo.precio }}</td>
+                        <td>{{ articulo.cantidadDisponible }}</td>
+
+                      <td>
+                                <div class="hidden-phone">
+                                    <a onclick="AddServices('{{ articulo.id }}')" class="btn btn-success btn-xs">
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+    </div>
+<!-- </section> -->

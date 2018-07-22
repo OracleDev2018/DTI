@@ -51,7 +51,7 @@ class ClienteController extends Controller
             return $this->redirectToRoute('cliente_show', array('id' => $cliente->getId()));
         }
 
-        return $this->render('cliente/new2.html.twig', array(
+        return $this->render('cliente/new.html.twig', array(
             'cliente' => $cliente,
             'form' => $form->createView(),
         ));

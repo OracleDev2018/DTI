@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="articulo")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ArticuloRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Articulo
 {
@@ -264,4 +265,68 @@ class Articulo
     {
         return $this->updatedAt;
     }
+
+    /**
+     * Set idFProveedor
+     *
+     * @param \AppBundle\Entity\Proveedor $idFProveedor
+     *
+     * @return Articulo
+     */
+    public function setIdFProveedor(\AppBundle\Entity\Proveedor $idFProveedor = null)
+    {
+        $this->idFProveedor = $idFProveedor;
+
+        return $this;
+    }
+
+    /**
+     * Get idFProveedor
+     *
+     * @return \AppBundle\Entity\Proveedor
+     */
+    public function getIdFProveedor()
+    {
+        return $this->idFProveedor;
+    }
+
+    /**
+     * Set idFMarca
+     *
+     * @param \AppBundle\Entity\Marca $idFMarca
+     *
+     * @return Articulo
+     */
+    public function setIdFMarca(\AppBundle\Entity\Marca $idFMarca = null)
+    {
+        $this->idFMarca = $idFMarca;
+
+        return $this;
+    }
+
+    /**
+     * Get idFMarca
+     *
+     * @return \AppBundle\Entity\Marca
+     */
+    public function getIdFMarca()
+    {
+        return $this->idFMarca;
+    }
+    /**
+   * @ORM\PrePersist
+   */
+  public function setCreatedAtValue()
+  {
+      $this->createdAt = new \DateTime();
+  }
+
+  /**
+   * @ORM\PrePersist
+   * @ORM\PreUpdate
+   */
+  public function setUpdatedAtValue()
+  {
+      $this->updatedAt = new \DateTime();
+  }
 }

@@ -173,4 +173,52 @@ class DetalleFactura
     {
         return $this->updatedAt;
     }
+
+    /**
+     * Set factura
+     *
+     * @param \AppBundle\Entity\Factura $factura
+     *
+     * @return DetalleFactura
+     */
+    public function setFactura(\AppBundle\Entity\Factura $factura = null)
+    {
+        $this->factura = $factura;
+
+        return $this;
+    }
+
+    /**
+     * Get factura
+     *
+     * @return \AppBundle\Entity\Factura
+     */
+    public function getFactura()
+    {
+        return $this->factura;
+    }
+
+    /**
+     * Set idFarticulo
+     *
+     * @param \AppBundle\Entity\Articulo $idFarticulo
+     *
+     * @return DetalleFactura
+     */
+    public function setIdFarticulo(\AppBundle\Entity\Articulo $idFarticulo = null)
+    {
+        $this->idFarticulo = $idFarticulo;
+
+        return $this;
+    }
+
+    /**
+     * Get idFarticulo
+     *
+     * @return \AppBundle\Entity\Articulo
+     */
+    public function getIdFarticulo()
+    {
+        return $this->idFarticulo;
+    }
 }

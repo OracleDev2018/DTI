@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Marcas list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombremarca</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for marca in marcas %}
+            <tr>
+                <td><a href="{{ path('marca_show', { 'id': marca.id }) }}">{{ marca.id }}</a></td>
+                <td>{{ marca.nombreMarca }}</td>
+                <td>{% if marca.createdAt %}{{ marca.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if marca.updatedAt %}{{ marca.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('marca_show', { 'id': marca.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('marca_edit', { 'id': marca.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('marca_new') }}">Create a new marca</a>
+        </li>
+    </ul>
+{% endblock %}

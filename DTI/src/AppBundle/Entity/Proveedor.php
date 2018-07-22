@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="proveedor")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProveedorRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Proveedor
 {
@@ -163,4 +164,45 @@ class Proveedor
     {
         return $this->updatedAt;
     }
+    /**
+   * @ORM\PrePersist
+   */
+  public function setCreatedAtValue()
+  {
+      $this->createdAt = new \DateTime();
+  }
+
+  /**
+   * @ORM\PrePersist
+   * @ORM\PreUpdate
+   */
+  public function setUpdatedAtValue()
+  {
+      $this->updatedAt = new \DateTime();
+  }
+
+    /**
+     * Set idFEmpresa
+     *
+     * @param \AppBundle\Entity\Empresa $idFEmpresa
+     *
+     * @return Proveedor
+     */
+    public function setIdFEmpresa(\AppBundle\Entity\Empresa $idFEmpresa = null)
+    {
+        $this->idFEmpresa = $idFEmpresa;
+
+        return $this;
+    }
+
+    /**
+     * Get idFEmpresa
+     *
+     * @return \AppBundle\Entity\Empresa
+     */
+    public function getIdFEmpresa()
+    {
+        return $this->idFEmpresa;
+    }
+  
 }

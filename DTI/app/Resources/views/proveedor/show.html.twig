@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Proveedor</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ proveedor.id }}</td>
+            </tr>
+            <tr>
+                <th>Codproveedor</th>
+                <td>{{ proveedor.codProveedor }}</td>
+            </tr>
+            <tr>
+                <th>Nombreproveedor</th>
+                <td>{{ proveedor.nombreProveedor }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if proveedor.createdAt %}{{ proveedor.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if proveedor.updatedAt %}{{ proveedor.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('proveedor_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('proveedor_edit', { 'id': proveedor.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

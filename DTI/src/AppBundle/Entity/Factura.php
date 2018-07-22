@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -308,5 +309,70 @@ class Factura
         return $this->updatedAt;
     }
 
-  
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->detalles = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add detalle
+     *
+     * @param \AppBundle\Entity\DetalleFactura $detalle
+     *
+     * @return Factura
+     */
+    public function addDetalle(\AppBundle\Entity\DetalleFactura $detalle)
+    {
+        $this->detalles[] = $detalle;
+
+        return $this;
+    }
+
+    /**
+     * Remove detalle
+     *
+     * @param \AppBundle\Entity\DetalleFactura $detalle
+     */
+    public function removeDetalle(\AppBundle\Entity\DetalleFactura $detalle)
+    {
+        $this->detalles->removeElement($detalle);
+    }
+
+    /**
+     * Get detalles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDetalles()
+    {
+        return $this->detalles;
+    }
+
+    /**
+     * Set cliente
+     *
+     * @param \AppBundle\Entity\Cliente $cliente
+     *
+     * @return Factura
+     */
+    public function setCliente(\AppBundle\Entity\Cliente $cliente = null)
+    {
+        $this->cliente = $cliente;
+
+        return $this;
+    }
+
+    /**
+     * Get cliente
+     *
+     * @return \AppBundle\Entity\Cliente
+     */
+    public function getCliente()
+    {
+        return $this->cliente;
+    }
 }
