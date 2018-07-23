@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}Creacion de Menu{% endblock %}
+{% block title %}Cliente{% endblock %}
 {% block body %}
 {{ parent() }}
 <section id="container" align="center" >
@@ -58,27 +58,6 @@
 {% endblock %}
 {% block javascripts %}
 {{ parent() }}
-<script type="text/javascript">
-$('#jorge').click(function(e){
-  // e.preventDefault();
-      var nombreAct, descripcionAct,fechaInicioAct;
-      // nombreAct=  $('#form_parent_menu').val().trim();
-      descripcionAct=$('#squirrelbundle_menuitem_nombremenu').val().trim();
-  if(  descripcionAct == ''  ){
-      swal(
-    'Oops...',
-    'Debes de llenar el formulario Completamente!',
-    'error'
-  );
-    }
-    else {
-      swal(
-  'Excelente!',
-  'Nuevo Menu !',
-  'success'
-);
-    }
-});// fin del click function de guardar actividades
-</script>
+
 
 {% endblock %}

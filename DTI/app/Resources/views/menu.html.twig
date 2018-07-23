@@ -28,12 +28,14 @@
                         <ul class="sub">
                             <li><a  href="{{asset('factura')}}">Ver Facturas </a></li>
                               <li><a  href="{{asset('factura/new')}}">Agregar Factura</a></li>
+                              <li><a  href="{{asset('detallefactura')}}">Detalles de Facturas</a></li>
+
 
                         </ul>
                     </li>
                     <li class="sub-menu">
                         <a href="javascript:;" >
-                            <i class="fa fa-truck"></i>
+                            <i class="fa fa-address-book-o"></i>
                             <span>Articulos</span>
                         </a>
                         <ul class="sub">
@@ -42,14 +44,28 @@
 
                         </ul>
                     </li>
+                    <li class="sub-menu">
+                        <a href="javascript:;" >
+                            <i class="fa fa-id-card-o"></i>
+                            <span>Marca</span>
+                        </a>
+                        <ul class="sub">
+                            <li><a  href="{{asset('marca')}}">Ver Marcas Registradas </a></li>
+                              <li><a  href="{{asset('marca/new')}}">Agregar Marca</a></li>
 
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:;" >
+                            <i class="fa fa-users"></i>
+                            <span> Proveedores</span>
+                        </a>
+                        <ul class="sub">
+                            <li><a  href="{{asset('proveedor')}}">Ver Proveedores </a></li>
+                              <li><a  href="{{asset('proveedor/new')}}">Agregar Proveedores</a></li>
 
-                  <li class="sub-menu">
-                      <ul class="sub">
-                          <li><a  href="{{asset('proyecto/new')}}">Gestion Clientes</a></li>
-                      </ul>
-                  </li>
-
+                        </ul>
+                    </li>
 
             </ul>
           </div>

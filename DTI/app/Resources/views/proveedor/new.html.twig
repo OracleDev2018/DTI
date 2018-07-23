@@ -1,11 +1,44 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Creacion de Cliente{% endblock %}
 {% block body %}
-    <h1>Proveedor creation</h1>
+{{ parent() }}
+<section id="container" align="center" >
+    <!--main content start-->
+    <section id="main-content" align="center">
+        <section class="wrapper" align="center">
+          <div class="page-header">
+    <h1>Creacion Proveedores</h1>
 
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+    <div class="form-group" align="center"> <h3>Cod Proveedor </h3> </div>
+  <div class="form-group" align="center">
+         {{ form_widget(form.codProveedor,
+         { 'attr' : {
+         'class' : 'form-control',
+          'style' : 'width: 500px'
+          } }) }}
+ </div>
+    <div class="form-group" align="center"> <h3>Nombre Proveedor </h3> </div>
+  <div class="form-group" align="center">
+         {{ form_widget(form.nombreProveedor,
+         { 'attr' : {
+         'class' : 'form-control',
+          'style' : 'width: 500px'
+          } }) }}
+ </div>
+ <div class="form-group" align="center"> <h3>Empresa </h3> </div>
+<div class="form-group" align="center">
+      {{ form_widget(form.idFEmpresa,
+      { 'attr' : {
+      'class' : 'form-control',
+       'style' : 'width: 500px'
+       } }) }}
+</div>
+
+
+    <p>
+      <input id="jorge" class="btn btn-success" type="submit" value="Guardar" />
+    </p>
     {{ form_end(form) }}
 
     <ul>
@@ -13,4 +46,15 @@
             <a href="{{ path('proveedor_index') }}">Back to the list</a>
         </li>
     </ul>
+  </section>
+</section>
+</section>
+{% endblock %}
+{% block footer %}
+
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+
+
 {% endblock %}

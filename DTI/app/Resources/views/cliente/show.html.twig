@@ -38,11 +38,11 @@
                 <td>{{ cliente.sexo }}</td>
             </tr>
             <tr>
-                <th>Createdat</th>
+                <th>Fecha Creacion</th>
                 <td>{% if cliente.createdAt %}{{ cliente.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Updatedat</th>
+                <th>Fecha Modificacion</th>
                 <td>{% if cliente.updatedAt %}{{ cliente.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
         </tbody>

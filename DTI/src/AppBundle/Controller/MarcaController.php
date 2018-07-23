@@ -48,7 +48,7 @@ class MarcaController extends Controller
             $em->persist($marca);
             $em->flush();
 
-            return $this->redirectToRoute('marca_show', array('id' => $marca->getId()));
+            return $this->redirectToRoute('marca_index');
         }
 
         return $this->render('marca/new.html.twig', array(

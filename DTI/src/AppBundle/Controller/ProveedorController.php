@@ -88,7 +88,7 @@ class ProveedorController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('proveedor_edit', array('id' => $proveedor->getId()));
+            return $this->redirectToRoute('proveedor_index');
         }
 
         return $this->render('proveedor/edit.html.twig', array(

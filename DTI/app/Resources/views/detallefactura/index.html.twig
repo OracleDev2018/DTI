@@ -1,28 +1,40 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="{{ asset('flatlab/assets/advanced-datatable/media/css/demo_page.css') }}" rel="stylesheet"
+        xmlns="http://www.w3.org/1999/html"/>
+  <link rel="stylesheet" type="text/css" href="{{ asset('sweet_alert/dist/sweetalert.css') }}">
+  <link href="{{ asset('flatlab/assets/advanced-datatable/media/css/demo_table.css') }}" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('sweet_alert/dist/sweetalert.css') }}">
+{% endblock %}
 {% block body %}
-    <h1>Detallefacturas list</h1>
+{{ parent() }}
+<section id="main-content">
+        <section class="wrapper site-min-height">
+          <div class="panel-body">
+    <h1>Lista de Detalles de Facturas</h1>
 
-    <table>
+      <table class="table table-striped table-hover  table-responsive">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Cantidad</th>
-                <th>Preciounitario</th>
-                <th>Createdat</th>
-                <th>Updatedat</th>
-                <th>Actions</th>
+                <th scope="col">Id</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Precio Unitario $</th>
+                <th scope="col">Fecha Creacion</th>
+                <th scope="col">Fecha Modificacion</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for detalleFactura in detalleFacturas %}
             <tr>
-                <td><a href="{{ path('detallefactura_show', { 'id': detalleFactura.id }) }}">{{ detalleFactura.id }}</a></td>
-                <td>{{ detalleFactura.cantidad }}</td>
-                <td>{{ detalleFactura.precioUnitario }}</td>
-                <td>{% if detalleFactura.createdAt %}{{ detalleFactura.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if detalleFactura.updatedAt %}{{ detalleFactura.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
+                <td scope="row" ><a href="{{ path('detallefactura_show', { 'id': detalleFactura.id }) }}">{{ detalleFactura.id }}</a></td>
+                <td scope="row" >{{ detalleFactura.cantidad }}</td>
+                <td scope="row" >{{ detalleFactura.precioUnitario }}</td>
+                <td scope="row" >{% if detalleFactura.createdAt %}{{ detalleFactura.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td scope="row" >{% if detalleFactura.updatedAt %}{{ detalleFactura.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <!-- <td>
                     <ul>
                         <li>
                             <a href="{{ path('detallefactura_show', { 'id': detalleFactura.id }) }}">show</a>
@@ -31,15 +43,10 @@
                             <a href="{{ path('detallefactura_edit', { 'id': detalleFactura.id }) }}">edit</a>
                         </li>
                     </ul>
-                </td>
+                </td> -->
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('detallefactura_new') }}">Create a new detalleFactura</a>
-        </li>
-    </ul>
 {% endblock %}

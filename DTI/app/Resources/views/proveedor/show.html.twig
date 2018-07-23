@@ -1,44 +1,102 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="{{ asset('flatlab/assets/advanced-datatable/media/css/demo_page.css') }}" rel="stylesheet"
+        xmlns="http://www.w3.org/1999/html"/>
+  <link rel="stylesheet" type="text/css" href="{{ asset('sweet_alert/dist/sweetalert.css') }}">
+  <link href="{{ asset('flatlab/assets/advanced-datatable/media/css/demo_table.css') }}" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('sweet_alert/dist/sweetalert.css') }}">
+{% endblock %}
 {% block body %}
+{{ parent() }}
+<section id="main-content">
+        <section class="wrapper site-min-height">
+          <div class="panel-body">
     <h1>Proveedor</h1>
 
-    <table>
+    <table class="table table-striped table-hover table-bordered" >
         <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ proveedor.id }}</td>
             </tr>
             <tr>
-                <th>Codproveedor</th>
+                <th>Cod Proveedor</th>
                 <td>{{ proveedor.codProveedor }}</td>
             </tr>
             <tr>
-                <th>Nombreproveedor</th>
+                <th>Nombre Proveedor</th>
                 <td>{{ proveedor.nombreProveedor }}</td>
             </tr>
             <tr>
-                <th>Createdat</th>
+                <th>Fecha Creacion</th>
                 <td>{% if proveedor.createdAt %}{{ proveedor.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Updatedat</th>
+                <th>Fecha Modificacion</th>
                 <td>{% if proveedor.updatedAt %}{{ proveedor.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
         </tbody>
     </table>
+    <div class="row">
+    <div class="col-sm-6">
+          <a   class="btn btn-success" href="{{ path('proveedor_index') }}">Regresar</a>
+      </div>
+      <div class="col-sm-6">
+        {{ form_start(delete_form) }}
+            <input type="submit" class="btn btn-danger" value="Eliminar" onclick="RolFunction()">
+        {{ form_end(delete_form) }}
+      </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('proveedor_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('proveedor_edit', { 'id': proveedor.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
-{% endblock %}
+
+    </div>
+    
+  </div>
+  </section>
+  </section>
+  {% endblock %}
+  {% block javascripts %}
+  {{ parent() }}
+  <script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+      $('#example').dataTable( {
+          "aaSorting": [[ 0, "desc" ]]
+      } );
+  } );
+
+  </script>
+  <!--Select 2-->
+  <script src="{{ asset('select2/select2.js') }}"></script>
+  <!--Sweet Alert-->
+  <script src="{{ asset('sweet_alert/dist/sweetalert.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('flatlab/assets/bootstrap-fileupload/bootstrap-fileupload.js') }}"></script>
+  <!--jQuery DataTables-->
+  <script type="text/javascript" src="{{ asset('flatlab/jquery.dataTables.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('flatlab/DT_bootstrap.js') }}"></script>
+  <script type="text/javascript">
+  function RolFunction() {
+  event.preventDefault(); // prevent form submit
+  var form = event.target.form; // storing the form
+          swal({
+    title: "¿Quieres eliminar este Cliente?",
+    text: "Esta accion no tiene retorno",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#DD6B55",
+    confirmButtonText: "Si Eliminar",
+    cancelButtonText: "No",
+    closeOnConfirm: false,
+    closeOnCancel: false
+  },
+  function(isConfirm){
+    if (isConfirm) {
+      form.submit();          // submitting the form when user press yes
+    } else {
+      swal("Eliminacion Cancelada", "El Cliente no fue eliminado", "error");
+    }
+  });
+  }
+  </script>
+
+  {% endblock %}

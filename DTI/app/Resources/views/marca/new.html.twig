@@ -1,16 +1,35 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Creacion de Marca{% endblock %}
 {% block body %}
-    <h1>Marca creation</h1>
+{{ parent() }}
+<section id="container" align="center" >
+    <!--main content start-->
+    <section id="main-content" align="center">
+        <section class="wrapper" align="center">
+          <div class="page-header">
+    <h1>Crear Marca</h1>
 
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+    <div class="form-group" align="center"> <h3>Nombre Marca</h3> </div>
+    <div class="form-group" align="center">
+           {{ form_widget(form.nombreMarca,
+           { 'attr' : {
+           'class' : 'form-control',
+            'style' : 'width: 500px'
+            } }) }}
+   </div>
+        <input class="btn btn-success" type="submit" value="Guardar" />
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('marca_index') }}">Back to the list</a>
-        </li>
-    </ul>
+  </section>
+</section>
+</section>
+{% endblock %}
+{% block footer %}
+
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+
+
 {% endblock %}
