@@ -9266,7 +9266,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sEmptyTable": "No hay ningún Producto o Servicio Registrado",
+			"sEmptyTable": "No hay ningún Articulo Registrado",
 
 
 			/**

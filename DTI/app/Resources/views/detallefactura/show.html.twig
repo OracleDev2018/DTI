@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Detallefactura</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ detalleFactura.id }}</td>
+            </tr>
+            <tr>
+                <th>Cantidad</th>
+                <td>{{ detalleFactura.cantidad }}</td>
+            </tr>
+            <tr>
+                <th>Preciounitario</th>
+                <td>{{ detalleFactura.precioUnitario }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if detalleFactura.createdAt %}{{ detalleFactura.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if detalleFactura.updatedAt %}{{ detalleFactura.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('detallefactura_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('detallefactura_edit', { 'id': detalleFactura.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

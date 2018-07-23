@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="detalle_factura")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\DetalleFacturaRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class DetalleFactura
 {
@@ -62,7 +63,7 @@ class DetalleFactura
     /**
     * @var \Articulo
     *
-    * @ORM\OneToOne(targetEntity="Articulo")
+    * @ORM\OneToOne(targetEntity="Articulo" )
     * @ORM\JoinColumn(name="id_f_articulo", referencedColumnName="id")
     */
    private $idFarticulo;
@@ -221,4 +222,20 @@ class DetalleFactura
     {
         return $this->idFarticulo;
     }
+    /**
+   * @ORM\PrePersist
+   */
+  public function setCreatedAtValue()
+  {
+      $this->createdAt = new \DateTime();
+  }
+
+  /**
+   * @ORM\PrePersist
+   * @ORM\PreUpdate
+   */
+  public function setUpdatedAtValue()
+  {
+      $this->updatedAt = new \DateTime();
+  }
 }

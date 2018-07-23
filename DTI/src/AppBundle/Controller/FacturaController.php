@@ -3,9 +3,13 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Factura;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Controller\BaseController as Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Factura controller.
@@ -26,8 +30,10 @@ class FacturaController extends Controller
 
         $facturas = $em->getRepository('AppBundle:Factura')->findAll();
 
+
         return $this->render('factura/index.html.twig', array(
             'facturas' => $facturas,
+
         ));
     }
 
@@ -42,25 +48,66 @@ class FacturaController extends Controller
       // inicio logica Factura
       $em = $this->getDoctrine()->getManager();
       $articulos = $em->getRepository('AppBundle:Articulo')->findAll();
+      $clientes = $em->getRepository('AppBundle:Cliente')->findAll();
       //
+        // $factura = new Factura();
+        // $form = $this->createForm('AppBundle\Form\FacturaType', $factura);
+        // $form->handleRequest($request);
+        //
+        // if ($form->isSubmitted() && $form->isValid()) {
+        //     $em = $this->getDoctrine()->getManager();
+        //     $em->persist($factura);
+        //     $em->flush();
+        //
+        //     return $this->redirectToRoute('factura_show', array('id' => $factura->getId()));
+        // }
+        $isJSON = $this->isJsonRequest($request);
         $factura = new Factura();
-        $form = $this->createForm('AppBundle\Form\FacturaType', $factura);
+        $factura->setEstadoFactura('Creada');
+
+        $form = $this->createForm('AppBundle\Form\FacturaType', $factura, [
+            'csrf_protection' => !$isJSON,
+        ]);
+
+        if ($isJSON) {
+            $data = json_decode($request->getContent(), true);
+            $form->submit($data);
+        }
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($factura);
-            $em->flush();
+          $em = $this->getDoctrine()->getManager();
+          $em->persist($factura);
+          $em->flush();
+          $em->clear();
 
-            return $this->redirectToRoute('factura_show', array('id' => $factura->getId()));
-        }
+          return $this->redirectToRoute('factura_show', array('id' => $factura->getId()), 303);
+
+      }
 
         return $this->render('factura/new.html.twig', array(
             'factura' => $factura,
-            'form' => $form->createView(),
             'articulos' => $articulos,
+            'clientes' => $clientes,
         ));
     }
+
+    /**
+   * @Route("detalle_articulo_create", name="detalle_articulo_create")
+   */
+  public function addServices(Request $request)
+  {
+      $em = $this->getDoctrine()->getManager();
+      $idArticuloPagado = $request->get('id_services');
+
+      $ArticuloPagado = $em->getRepository('AppBundle:Articulo')
+          ->findOneById($idArticuloPagado);
+
+      return $this->render('factura/detalleFactura.html.twig', [
+          'articuloActivo' => $ArticuloPagado,
+      ]);
+  }
 
     /**
      * Finds and displays a factura entity.

@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Factura
@@ -19,7 +20,7 @@ class Factura
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
@@ -102,11 +103,6 @@ class Factura
      * @ORM\JoinColumn(name="id_f_cliente", referencedColumnName="id")
      */
     private $cliente;
-
-
-
-
-
     /**
      * Get id
      *
@@ -315,7 +311,9 @@ class Factura
      */
     public function __construct()
     {
-        $this->detalles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->detalles = new ArrayCollection();
+        $this->fechaEntrega = new \DateTime();
+        $this->fechaCreada = new \DateTime();
     }
 
     /**
@@ -327,9 +325,14 @@ class Factura
      */
     public function addDetalle(\AppBundle\Entity\DetalleFactura $detalle)
     {
-        $this->detalles[] = $detalle;
+      if ($this->detalles->contains($detalle)) {
+          return;
+      }
 
-        return $this;
+      $this->detalles[] = $detalle;
+      $detalle->setFactura($this);
+
+      return $this;
     }
 
     /**
@@ -339,7 +342,11 @@ class Factura
      */
     public function removeDetalle(\AppBundle\Entity\DetalleFactura $detalle)
     {
-        $this->detalles->removeElement($detalle);
+      if (!$this->detalles->contains($detalle)) {
+          return;
+      }
+
+      $this->detalles->removeElement($detalle);
     }
 
     /**

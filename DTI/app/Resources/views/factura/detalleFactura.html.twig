@@ -1,0 +1,17 @@
+<tr>
+  <td class="js-detalle-factura">{{ articuloActivo.id }}</td>
+  <td>{{ articuloActivo.codProducto }}</td>
+  <td>{{ articuloActivo.nombreProducto }}</td>
+  <td>
+    <input class="pull-right js-detalle-precio" style="width:70px" step="0.0001" value="{{ articuloActivo.precio }}" name="precio" min="0.0000" readonly>
+  </td>
+  <td>
+    <input class="pull-right js-detalle-cantidad" style="width:70px" type="number" step="1"name="cantidad" min="1" value="1">
+  </td>
+  <td>$ <p class="pull-right js-detalle-subtotal">{{ articuloActivo.precio }}</p></td>
+  <td>
+    <a  class="btn btn-danger btn-xs eliminarGatito">
+      <i class="fa fa-minus"></i>
+    </a>
+  </td>
+</tr>

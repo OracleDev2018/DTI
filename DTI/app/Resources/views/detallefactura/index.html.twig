@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Detallefacturas list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Cantidad</th>
+                <th>Preciounitario</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for detalleFactura in detalleFacturas %}
+            <tr>
+                <td><a href="{{ path('detallefactura_show', { 'id': detalleFactura.id }) }}">{{ detalleFactura.id }}</a></td>
+                <td>{{ detalleFactura.cantidad }}</td>
+                <td>{{ detalleFactura.precioUnitario }}</td>
+                <td>{% if detalleFactura.createdAt %}{{ detalleFactura.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if detalleFactura.updatedAt %}{{ detalleFactura.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('detallefactura_show', { 'id': detalleFactura.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('detallefactura_edit', { 'id': detalleFactura.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('detallefactura_new') }}">Create a new detalleFactura</a>
+        </li>
+    </ul>
+{% endblock %}

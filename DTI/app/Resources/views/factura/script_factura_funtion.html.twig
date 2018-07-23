@@ -1,3 +1,218 @@
-<script type="text/javascript">
+<script>
+// Elimina un elemeto de la tabla
+$('body').on('click', 'a.eliminarGatito', function(){
+	$(this).parent().parent().remove();
+	calcularFactura();
+})
 
+
+
+
+function calcularFactura() {
+  const $subtotal = $('#subtotal');
+  const $iva = $('#iva');
+  const $ivaRetenido = $('#ivaRetenido');
+  const $cesc = $('#cesc');
+  const $total = $('#total');
+  const subtotal = Array.from(document.querySelectorAll('#detallesServicios .js-detalle-subtotal')).reduce((current, next) => current + parseFloat(next.innerText), 0);
+
+  if (document.querySelector('#chbiva').checked) {
+
+    const iva = subtotal * 0.13;
+    const total = subtotal + iva ;
+    $iva.text(iva.toFixed(4));
+    $total.text(total.toFixed(2));
+  }else {
+    const iva = subtotal * 0  ;
+    const total = subtotal + iva ;
+    $iva.text(iva.toFixed(4));
+    $total.text(total.toFixed(2));
+  }
+
+
+
+  $subtotal.text(subtotal.toFixed(4));
+
+}
+
+function onToggle() {
+    const $iva = $('#iva');
+    const $total = $('#total');
+    const $ivaRetenido = $('#ivaRetenido');
+
+
+  if (document.querySelector('#chbiva').checked) {
+    const subtotal = Array.from(document.querySelectorAll('#detallesServicios .js-detalle-subtotal')).reduce((current, next) => current + parseFloat(next.innerText), 0);
+    const iva = subtotal* 0.13;
+    const total = subtotal  + iva ;
+    $iva.text(iva.toFixed(4));
+     $total.text(total.toFixed(2));
+    // calcularFactura()
+
+  } else {
+      calcularFactura();
+      console.log(subtotal);
+  }
+
+}
+
+function onToggleDos() {
+
+    const $total = $('#total');
+
+  if (document.querySelector('#chivar').checked) {
+    const iva =  parseFloat(document.getElementById('iva').innerText);
+
+    const subtotal = Array.from(document.querySelectorAll('#detallesServicios .js-detalle-subtotal')).reduce((current, next) => current + parseFloat(next.innerText), 0);
+    const ivaRetenido = subtotal * 0.01;
+    const total = subtotal   + iva ;
+    $total.text(total.toFixed(2));
+
+  } else {
+      calcularFactura();
+  }
+}
+
+function onToggleTres() {
+
+    const $total = $('#total');
+    const $cesc = $('#cesc');
+
+  if (document.querySelector('#chivar').checked) {
+    const iva =         parseFloat(document.getElementById('iva').innerText);
+    const ivaRetenido = parseFloat(document.getElementById('ivaRetenido').innerText);
+
+    const subtotal = Array.from(document.querySelectorAll('#detallesServicios .js-detalle-subtotal')).reduce((current, next) => current + parseFloat(next.innerText), 0);
+    const cesc = subtotal * 0.05;
+    const total = subtotal  + ivaRetenido + iva + cesc ;
+     $cesc.text(cesc.toFixed(4));
+    $total.text(total.toFixed(2));
+  } else {
+      calcularFactura();
+  }
+}
+
+function calcularDetalleSubtotal(event) {
+  const target = event.target;
+  const $row = target.parentElement.parentElement;
+  let cantidad;
+
+  const precio = parseFloat($row.querySelector('.js-detalle-precio').value);
+  const $subtotal = $row.querySelector('.js-detalle-subtotal');
+  if (!target.reportValidity()) {
+    return;
+  }
+  if (target.name === 'cantidad') {
+    cantidad = parseInt(target.value) || 0;
+  }
+  $subtotal.innerText = precio * cantidad ;
+  calcularFactura();
+}
+
+function AddServices(id_services) {
+    //Datos a enviar por ajax
+    var datos={'id_services': id_services};
+    $.post("{{ path('detalle_articulo_create') }}",datos,function(data){
+      $("#detallesServicios").append(data);
+      $('.js-detalle-cantidad, .js-detalle-variacion').change(calcularDetalleSubtotal)
+      calcularFactura();
+    });
+}
+function DatosAcumulados() {
+    var totalSubtotal = parseFloat(0);
+    var IVA = parseFloat(0);
+    var IVA_Retenido = parseFloat(0);
+    var CESC = parseFloat(0);
+      subtotal = parseFloat(document.getElementById('subtotal').innerText);
+      totalSubtotal += subtotal;
+    $('#subtotal').text(totalSubtotal.toFixed(4));
+    $('#total').text((totalSubtotal).toFixed(4));
+}
+//metodo para el envio de parametros.
+// para guardar los datos en la base de datos.
+$('#facturarB').click(function(event){
+	    event.preventDefault();
+  if ($("#numeroDocumento").val().trim()=="" || $('#fechaPago').val().trim()== ""  ) {
+    swal("Upsss, algunos campos en el formulario estan vacios"," ","warning");
+  } else {
+    //
+        //   swal({
+        //   title: "Factura Enviada!",
+        //   text: "Enviando Factura",
+        //   button: false,
+        //   icon: "success",
+        // })
+        //
+
+    event.target.disabled = true;
+		let numeroFactura;
+		let estadoFactura;
+    let fechaVencimiento;
+    let iva;
+		let cliente;
+
+    if (document.getElementById('numeroDocumento').reportValidity()) {
+      numeroFactura=     document.getElementById('numeroDocumento').value;
+    }
+		if (document.getElementById('estadoFactura').reportValidity()) {
+      estadoFactura=     document.getElementById('estadoFactura').value;
+    }
+    if (document.getElementById('fechaPago').reportValidity()) {
+      fechaVencimiento=    document.getElementById('fechaPago').value;
+    }
+		  const subtotal=  document.getElementById('subtotal').innerText;
+      iva= document.getElementById('iva').innerText;
+     const total=               document.getElementById('total').innerText;
+  var factura = {
+    numeroFactura,
+		estadoFactura,
+    fechaVencimiento,
+	  subtotal,
+    iva,
+    total,
+		estadoFactura,
+    detalles: Array.from(document.querySelectorAll('#detallesServicios tr')).map(tr => {
+      const idFarticulo = parseInt(tr.querySelector('.js-detalle-factura').innerText);
+      const precioUnitario = parseFloat(tr.querySelector('.js-detalle-precio').value);
+      const cantidad       = parseInt(tr.querySelector('.js-detalle-cantidad').value);
+      return {
+				idFarticulo,
+				precioUnitario,
+				cantidad,
+        };
+    })
+  };
+  $.ajax({
+    url: '{{path('factura_new')}}',
+    type: 'POST',
+    data: JSON.stringify(factura),
+    contentType: 'application/json',
+    dataType: 'JSON',
+  }).done(function(response) {
+		aler(response	)
+          window.location.replace('{{path('factura_index')}}');
+      })
+      .fail( function( jqXHR, textStatus, errorThrown ) {
+      if (jqXHR.status === 0) {
+        alert('Not connect: Verify Network.');
+      } else if (jqXHR.status == 404) {
+        console.log('Requested page not found [404]');
+      } else if (jqXHR.status == 500) {
+        console.log('Internal Server Error [500].');
+      } else if (textStatus === 'parsererror') {
+        console.log('Requested JSON parse failed');
+      } else if (textStatus === 'timeout') {
+        console.log('Time out error.');
+      } else if (textStatus === 'abort') {
+        console.log('Ajax request aborted.');
+      } else {
+        console.log('Uncaught Error: ' + jqXHR.responseText);
+      }
+    }).always(function() {
+         window.location.replace('{{path('factura_index')}}');
+      });
+      }
+
+
+});// fin del click function de guardar actividades
 </script>

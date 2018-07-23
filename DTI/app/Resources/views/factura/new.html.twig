@@ -23,6 +23,40 @@
                         <!--  -->
                         <div class="row">
                         <div class="col-sm-6">
+                          <!--  -->
+                          <div class="form-group">
+                      <label class="col-sm-4 control-label col-lg-4">Numero Factura *</label>
+                          <div class="col-lg-8">
+                            <div class="input-group">
+                              <span class="input-group-addon"><li class="fa fa-edit"></li></span>
+                              <input
+                               id="estadoFactura"
+                               name="estadoFactura"
+                                type="text"
+                                class="form-control"
+                                placeholder="Numero Factura"
+                                maxlength="15"
+                                tabindex="1"
+                                 required>
+                            </div>
+                          </div>
+                        </div>
+                          <!--  -->
+                          <!-- <div class="form-group">
+                <label class="col-sm-4 control-label col-lg-4">Cliente</label>
+                  <div class="col-lg-8">
+                      <div class="input-group">
+                    <span class="input-group-addon"><li class="fa fa-globe"></li></span>
+                      <select style="width:250px;" id="cliente" class="js-example-basic-single form-control" name="cliente" tabindex="43">
+                          <option value="0">Selecione un Cliente</option>
+                          {% for cliente in clientes %}
+                          <option value="{{ cliente.id }}">{{ cliente.nombre }}</option>
+                          {% endfor %}
+                        </select>
+                        </div>
+                      </div>
+                </div> -->
+                          <!--  -->
                           <div class="form-group">
                       <label class="col-sm-4 control-label col-lg-4">Numero Factura *</label>
                           <div class="col-lg-8">
@@ -72,12 +106,10 @@
                                 <thead>
                                 <tr>
                                     <th><li class="fa fa-bookmark-o"></li>&nbsp;ID</th>
-                                    <th><li class="fa fa-edit"></li>&nbsp;Alianza</th>
-                                    <th><li class="fa fa-edit"></li>&nbsp;Nombre</th>
+                                    <th><li class="fa fa-edit"></li>&nbsp;Cod Articulo</th>
+                                    <th><li class="fa fa-edit"></li>&nbsp;Nombre Articulo</th>
                                     <th><li class="fa fa-money"></li>&nbsp;Precio</th>
                                     <th><li class="fa fa-circle"></li>&nbsp;Cantidad</th>
-                                    <th><li class="fa fa-money"></li>&nbsp;Variacion</th>
-                                    <th><li class="fa fa-dropbox"></li>&nbsp;Comentario</th>
                                     <th><li class="fa fa-money"></li>&nbsp;Subtotal</th>
                                     <th><li class="fa fa-wrench"></li></th>
                                 </tr>
