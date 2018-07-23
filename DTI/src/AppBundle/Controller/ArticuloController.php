@@ -88,7 +88,7 @@ class ArticuloController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('articulo_edit', array('id' => $articulo->getId()));
+            return $this->redirectToRoute('articulo_index');
         }
 
         return $this->render('articulo/edit.html.twig', array(
