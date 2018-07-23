@@ -1,6 +1,18 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="{{ asset('flatlab/assets/advanced-datatable/media/css/demo_page.css') }}" rel="stylesheet"
+        xmlns="http://www.w3.org/1999/html"/>
+  <link rel="stylesheet" type="text/css" href="{{ asset('sweet_alert/dist/sweetalert.css') }}">
+  <link href="{{ asset('flatlab/assets/advanced-datatable/media/css/demo_table.css') }}" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('sweet_alert/dist/sweetalert.css') }}">
+{% endblock %}
 {% block body %}
+{{ parent() }}
+<section id="main-content">
+        <section class="wrapper site-min-height">
+          <div class="panel-body">
     <h1>Factura edit</h1>
 
     {{ form_start(edit_form) }}
@@ -18,4 +30,26 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
-{% endblock %}
+  </section>
+  </section>
+  {% endblock %}
+  {% block javascripts %}
+  {{ parent() }}
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+        $('#example').dataTable( {
+            "aaSorting": [[ 0, "desc" ]]
+        } );
+    } );
+
+  </script>
+  <!--Select 2-->
+  <script src="{{ asset('select2/select2.js') }}"></script>
+  <!--Sweet Alert-->
+  <script src="{{ asset('sweet_alert/dist/sweetalert.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('flatlab/assets/bootstrap-fileupload/bootstrap-fileupload.js') }}"></script>
+  <!--jQuery DataTables-->
+  <script type="text/javascript" src="{{ asset('flatlab/jquery.dataTables.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('flatlab/DT_bootstrap.js') }}"></script>
+
+  {% endblock %}

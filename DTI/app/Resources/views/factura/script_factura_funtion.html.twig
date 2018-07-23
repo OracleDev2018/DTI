@@ -135,16 +135,13 @@ $('#facturarB').click(function(event){
   if ($("#numeroDocumento").val().trim()=="" || $('#fechaPago').val().trim()== ""  ) {
     swal("Upsss, algunos campos en el formulario estan vacios"," ","warning");
   } else {
-    //
-        //   swal({
-        //   title: "Factura Enviada!",
-        //   text: "Enviando Factura",
-        //   button: false,
-        //   icon: "success",
-        // })
-        //
-
-    event.target.disabled = true;
+    swal({
+          title: "Factura Enviada!",
+          text: "Enviando Factura",
+          button: false,
+          icon: "success",
+        })
+  event.target.disabled = true;
 		let numeroFactura;
 		let estadoFactura;
     let fechaVencimiento;
@@ -160,6 +157,9 @@ $('#facturarB').click(function(event){
     if (document.getElementById('fechaPago').reportValidity()) {
       fechaVencimiento=    document.getElementById('fechaPago').value;
     }
+		if (document.getElementById('cliente').reportValidity()) {
+      cliente=           document.getElementById('cliente').value;
+    }
 		  const subtotal=  document.getElementById('subtotal').innerText;
       iva= document.getElementById('iva').innerText;
      const total=               document.getElementById('total').innerText;
@@ -167,6 +167,7 @@ $('#facturarB').click(function(event){
     numeroFactura,
 		estadoFactura,
     fechaVencimiento,
+		cliente,
 	  subtotal,
     iva,
     total,

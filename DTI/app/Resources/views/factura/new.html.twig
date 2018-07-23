@@ -30,8 +30,8 @@
                             <div class="input-group">
                               <span class="input-group-addon"><li class="fa fa-edit"></li></span>
                               <input
-                               id="estadoFactura"
-                               name="estadoFactura"
+                               id="numeroDocumento"
+                               name="nombreFactura"
                                 type="text"
                                 class="form-control"
                                 placeholder="Numero Factura"
@@ -42,7 +42,27 @@
                           </div>
                         </div>
                           <!--  -->
-                          <!-- <div class="form-group">
+                          <div class="form-group">
+                      <label class="col-sm-4 control-label col-lg-4">Estado Factura </label>
+                          <div class="col-lg-8">
+                            <div class="input-group">
+                              <span class="input-group-addon"><li class="fa fa-edit"></li></span>
+                              <input
+                               id="estadoFactura"
+                               name="estadoFactura"
+                                type="text"
+                                class="form-control"
+                                placeholder="Numero Factura"
+                                maxlength="15"
+                                tabindex="1"
+                                readonly
+                                value="creada"
+                                 required>
+                            </div>
+                          </div>
+                        </div>
+                          <!--  -->
+                           <div class="form-group">
                 <label class="col-sm-4 control-label col-lg-4">Cliente</label>
                   <div class="col-lg-8">
                       <div class="input-group">
@@ -55,30 +75,9 @@
                         </select>
                         </div>
                       </div>
-                </div> -->
-                          <!--  -->
-                          <div class="form-group">
-                      <label class="col-sm-4 control-label col-lg-4">Numero Factura *</label>
-                          <div class="col-lg-8">
-                            <div class="input-group">
-                              <span class="input-group-addon"><li class="fa fa-edit"></li></span>
-                              <input
-                               id="numeroDocumento"
-                               name="nombreFactura"
-                                type="text"
-                                class="form-control"
-                                placeholder="Numero Factura"
-                                maxlength="15"
-                                tabindex="1"
-                                 required>
-                            </div>
-                          </div>
-                        </div>
-
-                        <!--  -->
-                        <!--  -->
-                        <div class="form-group">
-                    <label class="col-sm-4 control-label col-lg-4">Fecha Pago *</label>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label col-lg-4">Fecha Vencimiento *</label>
                     <div class="col-lg-8">
                         <div class="input-group">
                             <span class="input-group-addon"><li class="fa fa-calendar"></li></span>

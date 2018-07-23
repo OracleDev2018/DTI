@@ -40,7 +40,7 @@ class FacturaType extends AbstractType
         ])
         // ->add('createdAt')
         // ->add('updatedAt')
-        // ->add('cliente',null, ['choice_label'=>'nombre'])
+         ->add('cliente',null, ['choice_label'=>'nombre'])
         ->add('detalles', 'Symfony\Component\Form\Extension\Core\Type\CollectionType', [
             'entry_type' => 'AppBundle\Form\DetalleFacturaType',
             'allow_add' => true,

@@ -63,8 +63,6 @@ class FacturaController extends Controller
         // }
         $isJSON = $this->isJsonRequest($request);
         $factura = new Factura();
-        $factura->setEstadoFactura('Creada');
-
         $form = $this->createForm('AppBundle\Form\FacturaType', $factura, [
             'csrf_protection' => !$isJSON,
         ]);

@@ -312,8 +312,8 @@ class Factura
     public function __construct()
     {
         $this->detalles = new ArrayCollection();
-        $this->fechaEntrega = new \DateTime();
-        $this->fechaCreada = new \DateTime();
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
     }
 
     /**

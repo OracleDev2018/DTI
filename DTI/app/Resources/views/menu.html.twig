@@ -9,13 +9,29 @@
                           <span>Inicio</span>
                       </a>
                   </li>
-
                   <li class="sub-menu">
-                      <a href="{{asset('cliente/new')}}" >
-                          <i class="icon-user"></i>
-                          <span>Gestion Clientes</span>
-                      </a>
-                      </li>
+                    <a href="javascript:;" >
+                        <i class="icon-user"></i>
+                        <span>Gestion Cliente</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a  href="{{asset('cliente')}}">Ver Clientes </a></li>
+                          <li><a  href="{{asset('cliente/new')}}">Agregar Cliente</a></li>
+
+                    </ul>
+                </li>
+                    <li class="sub-menu">
+                        <a href="javascript:;" >
+                            <i class="icon-usd"></i>
+                            <span>Facturacion</span>
+                        </a>
+                        <ul class="sub">
+                            <li><a  href="{{asset('factura')}}">Ver Facturas </a></li>
+                              <li><a  href="{{asset('factura/new')}}">Agregar Factura</a></li>
+
+                        </ul>
+                    </li>
+
 
                   <li class="sub-menu">
                       <ul class="sub">

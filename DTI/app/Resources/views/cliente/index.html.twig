@@ -1,49 +1,75 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="{{ asset('flatlab/assets/advanced-datatable/media/css/demo_page.css') }}" rel="stylesheet"
+        xmlns="http://www.w3.org/1999/html"/>
+  <link rel="stylesheet" type="text/css" href="{{ asset('sweet_alert/dist/sweetalert.css') }}">
+  <link href="{{ asset('flatlab/assets/advanced-datatable/media/css/demo_table.css') }}" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('sweet_alert/dist/sweetalert.css') }}">
+{% endblock %}
 {% block body %}
-    <h1>Clientes list</h1>
+{{ parent() }}
+<section id="main-content">
+        <section class="wrapper site-min-height">
+          <div class="panel-body">
+    <h1>Lista Clientes</h1>
 
-    <table>
+  <table class="table table-striped table-hover  table-responsive">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Edad</th>
-                <th>Sexo</th>
-                <th>Createdat</th>
-                <th>Updatedat</th>
-                <th>Actions</th>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Sexo</th>
+                <th scope="col">Fecha de Creacion</th>
+                <th scope="col">Fecha de Modificacion</th>
+                <th scope="col">Actiones</th>
             </tr>
         </thead>
         <tbody>
         {% for cliente in clientes %}
             <tr>
-                <td><a href="{{ path('cliente_show', { 'id': cliente.id }) }}">{{ cliente.id }}</a></td>
-                <td>{{ cliente.nombre }}</td>
-                <td>{{ cliente.apellido }}</td>
-                <td>{{ cliente.edad }}</td>
-                <td>{{ cliente.sexo }}</td>
-                <td>{% if cliente.createdAt %}{{ cliente.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if cliente.updatedAt %}{{ cliente.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('cliente_show', { 'id': cliente.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('cliente_edit', { 'id': cliente.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
+                <td scope="row" ><a href="{{ path('cliente_show', { 'id': cliente.id }) }}">{{ cliente.id }}</a></td>
+                <td scope="row" >{{ cliente.nombre }}</td>
+                <td scope="row" >{{ cliente.apellido }}</td>
+                <td scope="row" >{{ cliente.edad }}</td>
+                <td scope="row" >{{ cliente.sexo }}</td>
+                <td scope="row" >{% if cliente.createdAt %}{{ cliente.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td scope="row" >{% if cliente.updatedAt %}{{ cliente.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td><a class="btn btn-info" href="{{ path('cliente_show', { 'id': cliente.id }) }}">Ver</a></td>
+                <td><a class="btn btn-warning" href="{{ path('cliente_edit', { 'id': cliente.id }) }}">Editar</a></td>
+                
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    <div align="center">
+    <a class="btn btn-success" href="{{ path('cliente_new') }}">Crear Nuevo Cliente</a>
+    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('cliente_new') }}">Create a new cliente</a>
-        </li>
-    </ul>
-{% endblock %}
+  </div>
+  </section>
+  </section>
+  {% endblock %}
+  {% block javascripts %}
+  {{ parent() }}
+  <script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $('#example').dataTable( {
+        "aaSorting": [[ 0, "desc" ]]
+    } );
+  } );
+
+  </script>
+  <!--Select 2-->
+  <script src="{{ asset('select2/select2.js') }}"></script>
+  <!--Sweet Alert-->
+  <script src="{{ asset('sweet_alert/dist/sweetalert.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('flatlab/assets/bootstrap-fileupload/bootstrap-fileupload.js') }}"></script>
+  <!--jQuery DataTables-->
+  <script type="text/javascript" src="{{ asset('flatlab/jquery.dataTables.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('flatlab/DT_bootstrap.js') }}"></script>
+
+  {% endblock %}

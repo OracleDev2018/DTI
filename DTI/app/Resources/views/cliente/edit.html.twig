@@ -1,21 +1,84 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Creacion de Menu{% endblock %}
 {% block body %}
-    <h1>Cliente edit</h1>
+{{ parent() }}
+<section id="container" align="center" >
+    <!--main content start-->
+    <section id="main-content" align="center">
+        <section class="wrapper" align="center">
+          <div class="page-header">
+					           <h1>Editar Cliente</h1>
+				    </div>
+              {{ form_start(edit_form) }}
+              <div class="form-group" align="center"> <h3>Nombre  </h3> </div>
+              <div class="form-group" align="center">
+                     {{ form_widget(edit_form.nombre,
+                     { 'attr' : {
+                     'class' : 'form-control',
+                      'style' : 'width: 500px'
+                      } }) }}
+             </div>
+               <div class="form-group" align="center"> <h3>Apellido  </h3> </div>
+             <div class="form-group" align="center">
+                    {{ form_widget(edit_form.apellido,
+                    { 'attr' : {
+                    'class' : 'form-control',
+                     'style' : 'width: 500px'
+                     } }) }}
+            </div>
+              <div class="form-group" align="center"> <h3>Edad  </h3> </div>
+            <div class="form-group" align="center">
+                   {{ form_widget(edit_form.edad,
+                   { 'attr' : {
+                   'class' : 'form-control',
+                    'style' : 'width: 500px'
+                    } }) }}
+           </div>
+             <div class="form-group" align="center"> <h3>Sexo </h3> </div>
+           <div class="form-group" align="center">
+                  {{ form_widget(edit_form.sexo,
+                  { 'attr' : {
+                  'class' : 'form-control',
+                   'style' : 'width: 500px'
+                   } }) }}
+          </div>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('cliente_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+             <p>
+               <input id="jorge" class="btn btn-success" type="submit" value="Editar" />
+             </p>
+
+      {{ form_end(edit_form) }}
+        </section>
+      </section>
+      </section>
+{% endblock %}
+{% block footer %}
+
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript">
+$('#jorge').click(function(e){
+  // e.preventDefault();
+      var nombreAct, descripcionAct,fechaInicioAct;
+      // nombreAct=  $('#form_parent_menu').val().trim();
+      descripcionAct=$('#squirrelbundle_menuitem_nombremenu').val().trim();
+  if(  descripcionAct == ''  ){
+      swal(
+    'Oops...',
+    'Debes de llenar el formulario Completamente!',
+    'error'
+  );
+    }
+    else {
+      swal(
+  'Excelente!',
+  'Nuevo Menu !',
+  'success'
+);
+    }
+});// fin del click function de guardar actividades
+</script>
+
 {% endblock %}
